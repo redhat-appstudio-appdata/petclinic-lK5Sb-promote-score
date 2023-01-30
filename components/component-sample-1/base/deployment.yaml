@@ -1,0 +1,40 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  creationTimestamp: null
+  name: my-java-springboot
+spec:
+  replicas: 5
+  selector:
+    matchLabels:
+      app: java-springboot-app
+  strategy: {}
+  template:
+    metadata:
+      creationTimestamp: null
+      labels:
+        app: java-springboot-app
+    spec:
+      containers:
+      - env:
+        - name: FOO
+          value: foo11
+        - name: BAR
+          value: bar11
+        image: quay.io/myimage2
+        name: my-java-springboot
+        ports:
+        - containerPort: 8081
+          name: http
+          protocol: TCP
+        - containerPort: 5566
+        resources:
+          limits:
+            cpu: "2"
+            memory: 500Mi
+            storage: 400Mi
+          requests:
+            cpu: 701m
+            memory: 401Mi
+            storage: 201Mi
+status: {}
